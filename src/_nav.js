@@ -1,14 +1,56 @@
 export default {
   items: [
     {
-      name: 'Dashboard',
+      name: 'Admin Panel',
       url: '/dashboard',
       icon: 'icon-speedometer',
-      badge: {
-        variant: 'info',
-        text: 'NEW',
-      },
+      
     },
+
+    {
+      name: 'Users',
+      url: '/theme/colors',
+      icon: 'icon-user',
+    },
+
+    {
+      name: 'Slates',
+      url: '/base',
+      icon: 'icon-calendar',
+      children: [
+        {
+          name: 'List',
+          url: '/base/breadcrumbs',
+          icon: 'icon-list',
+        },
+        {
+          name: 'Add',
+          url: '/base/cards',
+          icon: 'icon-plus',
+        }
+      ]
+    },
+
+    {
+      name: 'Contests',
+      url: '/base',
+      icon: 'icon-trophy',
+      children: [
+        {
+          name: 'List',
+          url: '/base/breadcrumbs',
+          icon: 'icon-list',
+        },
+        {
+          name: 'Create',
+          url: '/base/cards',
+          icon: 'icon-plus',
+        }
+      ]
+    },
+
+    ////////////////////////////////////////////////////////
+
     {
       title: true,
       name: 'Theme',
@@ -254,19 +296,6 @@ export default {
           icon: 'icon-star',
         },
       ],
-    },
-    {
-      name: 'Download CoreUI',
-      url: 'http://coreui.io/react/',
-      icon: 'icon-cloud-download',
-      class: 'mt-auto',
-      variant: 'success',
-    },
-    {
-      name: 'Try CoreUI PRO',
-      url: 'http://coreui.io/pro/react/',
-      icon: 'icon-layers',
-      variant: 'danger',
-    },
+    }    
   ],
 };
