@@ -9,23 +9,36 @@ export default {
 
     {
       name: 'Users',
-      url: '/theme/colors',
+      url: '/user',
       icon: 'icon-user',
-    },
-
-    {
-      name: 'Slates',
-      url: '/base',
-      icon: 'icon-calendar',
       children: [
         {
           name: 'List',
-          url: '/base/breadcrumbs',
+          url: '/user/list',
           icon: 'icon-list',
         },
         {
           name: 'Add',
-          url: '/base/cards',
+          url: '/user/add',
+          icon: 'icon-plus',
+        }
+      ]
+
+    },
+
+    {
+      name: 'Slates',
+      url: '/slate',
+      icon: 'icon-calendar',
+      children: [
+        {
+          name: 'List',
+          url: '/slate/list',
+          icon: 'icon-list',
+        },
+        {
+          name: 'Add',
+          url: '/slate/add',
           icon: 'icon-plus',
         }
       ]
@@ -33,17 +46,17 @@ export default {
 
     {
       name: 'Contests',
-      url: '/base',
+      url: '/contest',
       icon: 'icon-trophy',
       children: [
         {
           name: 'List',
-          url: '/base/breadcrumbs',
+          url: '/contest/list',
           icon: 'icon-list',
         },
         {
           name: 'Create',
-          url: '/base/cards',
+          url: '/contest/add',
           icon: 'icon-plus',
         }
       ]

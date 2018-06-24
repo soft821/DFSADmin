@@ -47,7 +47,7 @@ class AdminHeader extends Component {
 
         
         <Nav className="ml-auto" navbar>
-          <NavItem className="d-md-down-none">
+          <NavItem className="d-md-down-none" style={{marginRight: 2+'em'}}>
             <Button block color="light" onClick={this.handleLogout.bind(this)}><i className="icon-logout"></i><span> Logout </span></Button>
           </NavItem>
           

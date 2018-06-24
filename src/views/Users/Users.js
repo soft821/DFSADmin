@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import { Badge, Card, CardBody, CardHeader, Col, Row, Table, Pagination, PaginationItem, PaginationLink, } from 'reactstrap';
 
 import usersData from './UsersData'
 
@@ -34,22 +34,23 @@ class Users extends Component {
 
     return (
       <div className="animated fadeIn">
+        
         <Row>
-          <Col xl={6}>
+          <Col>
             <Card>
               <CardHeader>
-                <i className="fa fa-align-justify"></i> Users <small className="text-muted">example</small>
+                <i className="fa fa-align-justify"></i> Combined All Table
               </CardHeader>
               <CardBody>
-                <Table responsive hover>
+                <Table hover bordered responsive>
                   <thead>
-                    <tr>
-                      <th scope="col">id</th>
-                      <th scope="col">name</th>
-                      <th scope="col">registered</th>
-                      <th scope="col">role</th>
-                      <th scope="col">status</th>
-                    </tr>
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Date registered</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Status</th>
+                  </tr>
                   </thead>
                   <tbody>
                     {userList.map((user, index) =>
@@ -57,6 +58,18 @@ class Users extends Component {
                     )}
                   </tbody>
                 </Table>
+                <nav>
+                  <Pagination>
+                    <PaginationItem><PaginationLink previous tag="button">Prev</PaginationLink></PaginationItem>
+                    <PaginationItem active>
+                      <PaginationLink tag="button">1</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem><PaginationLink tag="button">2</PaginationLink></PaginationItem>
+                    <PaginationItem><PaginationLink tag="button">3</PaginationLink></PaginationItem>
+                    <PaginationItem><PaginationLink tag="button">4</PaginationLink></PaginationItem>
+                    <PaginationItem><PaginationLink next tag="button">Next</PaginationLink></PaginationItem>
+                  </Pagination>
+                </nav>
               </CardBody>
             </Card>
           </Col>
