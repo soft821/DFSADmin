@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table, Pagination, PaginationItem, PaginationLink, } from 'reactstrap';
-
+import  FunctionablePaginator  from '../mine/FunctionablePaginator';
 import usersData from './UsersData'
 
 function UserRow(props) {
@@ -27,10 +27,47 @@ function UserRow(props) {
 }
 
 class Users extends Component {
+  
+ 
+  constructor(props){
+    super(props);
+    this.state = {
+      userList: []
+    }
+    
+    this.currentPage = 1
+    this.defaultCountPerPage = 10;
+    this.totalDisplayed = 5;
+    
+    
+    this.totalPages  = Math.ceil(usersData.length / this.defaultCountPerPage);    
+    
+
+  }
+
+  componentDidMount() {
+    this.setState({userList : this.countUserList()})
+  }
+
+
+  handlePagerClick(e){
+    this.currentPage = e;
+
+    console.log(this.currentPage);
+    this.setState({userList : this.countUserList()})
+  }
+
+  countUserList()
+  {
+
+    if (this.currentPage * this.defaultCountPerPage > usersData.length) {
+      return usersData.slice((this.currentPage - 1)*this.defaultCountPerPage,  usersData.length)
+    } else {
+      return usersData.slice((this.currentPage - 1)*this.defaultCountPerPage,  this.currentPage * this.defaultCountPerPage)
+    }
+  }
 
   render() {
-
-    const userList = usersData.filter((user) => user.id < 10)
 
     return (
       <div className="animated fadeIn">
@@ -39,7 +76,7 @@ class Users extends Component {
           <Col>
             <Card>
               <CardHeader>
-                <i className="fa fa-align-justify"></i> Combined All Table
+                <i className="fa fa-align-justify"></i> Registered Users
               </CardHeader>
               <CardBody>
                 <Table hover bordered responsive>
@@ -53,22 +90,14 @@ class Users extends Component {
                   </tr>
                   </thead>
                   <tbody>
-                    {userList.map((user, index) =>
+                    {this.state.userList.map((user, index) =>
                       <UserRow key={index} user={user}/>
                     )}
                   </tbody>
                 </Table>
                 <nav>
-                  <Pagination>
-                    <PaginationItem><PaginationLink previous tag="button">Prev</PaginationLink></PaginationItem>
-                    <PaginationItem active>
-                      <PaginationLink tag="button">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">2</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">3</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">4</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink next tag="button">Next</PaginationLink></PaginationItem>
-                  </Pagination>
+                  <FunctionablePaginator pageChanged={this.handlePagerClick.bind(this)} totalPages={this.totalPages} totalDisplayed={this.totalDisplayed}>                 
+                  </FunctionablePaginator>
                 </nav>
               </CardBody>
             </Card>

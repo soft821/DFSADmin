@@ -38,6 +38,7 @@ class User extends Component {
             </Card>
           </Col>
         </Row>
+        
       </div>
     )
   }
