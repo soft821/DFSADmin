@@ -95,17 +95,14 @@ FunctionablePaginator.propTypes = {
   totalPages: function(props, propName, component) {
     if (!props.totalPages) {
       return new Error("totalPages is required");
-    } else if (props.totalPages < props.totalDisplayed) {
-      return new Error("totalpages must be >= totalDisplayed");
-    } else if (props.totalPages < 2) {
-      return new Error("totalPages must be 2 or greater");
-    }
+    } 
   },
   //the total number of pages displayed
   totalDisplayed: PropTypes.number
 };
 
 FunctionablePaginator.defaultProps = {
-  totalDisplayed: 5
+  totalDisplayed: 5,
+  totalPages: 5
 };
 export default FunctionablePaginator;
