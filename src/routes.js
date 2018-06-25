@@ -182,6 +182,11 @@ const User = Loadable({
   loading: Loading,
 });
 
+const AddUser = Loadable({
+  loader: () => import('./views/Users/AddUser'),
+  loading: Loading,
+});
+
 
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
@@ -228,8 +233,8 @@ const routes = [
 
 
   { path: '/users', exact: true,  name: 'Users', component: Users },
-  { path: '/users/list', exact: true,  name: 'Users', component: Users },
-  { path: '/users/add', exact: true,  name: 'Users', component: Users },
+  { path: '/users/list', exact: true,  name: 'List', component: Users },
+  { path: '/users/add', exact: true, name: 'Add User', component: AddUser },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
 ];
 

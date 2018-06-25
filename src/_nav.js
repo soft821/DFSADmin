@@ -9,17 +9,17 @@ export default {
 
     {
       name: 'Users',
-      url: '/user',
+      url: '/users',
       icon: 'icon-user',
       children: [
         {
           name: 'List',
-          url: '/user/list',
+          url: '/users/list',
           icon: 'icon-list',
         },
         {
           name: 'Add',
-          url: '/user/add',
+          url: '/users/add',
           icon: 'icon-plus',
         }
       ]
