@@ -24,7 +24,7 @@ class AddUser extends Component {
             return;
 
         let authToken = localStorage.getItem('token');
-        fetch("http://192.168.0.147:8000/api/v1/admin/sendpromo?email=" + this.state.email , {
+        fetch("http://localhost:8000/api/v1/admin/sendpromo?email=" + this.state.email , {
           method: 'post',
           headers: {
             'Authorization' : 'Baerer ' + authToken,

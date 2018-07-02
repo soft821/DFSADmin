@@ -26,7 +26,7 @@ class Login extends Component {
 
   handleLogin(event){
 
-    fetch("http://192.168.0.147:8000/api/v1/auth/admin-login?email=" + this.state.username + "&password=" + this.state.password , {
+    fetch("http://localhost:8000/api/v1/auth/admin-login?email=" + this.state.username + "&password=" + this.state.password , {
       method: 'post',
       headers: {
      
@@ -49,7 +49,7 @@ class Login extends Component {
         
         return;
       } else {
-        alert(data['message']);
+        alert('server error:' + data['message']);
       }
 
 
