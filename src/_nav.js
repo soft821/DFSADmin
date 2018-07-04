@@ -28,17 +28,17 @@ export default {
 
     {
       name: 'Slates',
-      url: '/slate',
+      url: '/slates',
       icon: 'icon-calendar',
       children: [
         {
           name: 'List',
-          url: '/slate/list',
+          url: '/slates/list',
           icon: 'icon-list',
         },
         {
           name: 'Add',
-          url: '/slate/add',
+          url: '/slates/add',
           icon: 'icon-plus',
         }
       ]

@@ -126,7 +126,7 @@ class Users extends Component {
       
       var filteredArray = [];
       this.usersRecoveryData.forEach((user) => {
-        if (user.name.search(e.target.value) !== -1) {
+        if (user.name.toUpperCase().search(e.target.value.toUpperCase()) !== -1) {
           filteredArray.push(user);
         } 
       });
