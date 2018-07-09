@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import { toast } from 'react-toastify';
 
 class AddUser extends Component {
     
@@ -41,15 +42,22 @@ class AddUser extends Component {
 
           if (data['status'] == 0) {
             
-            alert(data['message']);
+            toast.success(data['message'], {
+              position: toast.POSITION.TOP_RIGHT
+            });
 
           } else {
-            alert(data['message']);
+            toast.warn(data['message'], {
+              position: toast.POSITION.TOP_RIGHT
+            });
           }
 
 
         }).catch(function(error) {
-          alert(error);
+          toast.error(error, {
+            position: toast.POSITION.TOP_RIGHT
+          });
+        
         });
 
         e.preventDefault();

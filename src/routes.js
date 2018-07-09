@@ -192,6 +192,11 @@ const Slates = Loadable({
   loading: Loading,
 });
 
+const AddSlates = Loadable({
+  loader: () => import('./views/Pages/Slate/AddSlates'),
+  loading: Loading,
+});
+
 
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
@@ -243,6 +248,7 @@ const routes = [
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
   { path: '/slates', exact: true,  name: 'Slates', component: Slates },
   { path: '/slates/list', exact: true,  name: 'List', component: Slates },
+  { path: '/slates/add', exact: true,  name: 'Add Slate', component: AddSlates },
 
 
 

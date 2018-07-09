@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Badge, Card, CardBody, CardHeader, Col, Row, Table, Modal, ModalBody, ModalFooter, ModalHeader,Input,InputGroupAddon,InputGroup} from 'reactstrap';
 import  FunctionablePaginator  from '../mine/FunctionablePaginator';
 import { AppSwitch } from '@coreui/react';
+import { toast } from 'react-toastify';
 
 function UserRow(props) {
   const user = props.user
@@ -105,12 +106,16 @@ class Users extends Component {
         this.setState({rate : data['userInfo']['rate']})
         return;
       } else {
-        alert(data['message']);
+        toast.error(data['message'], {
+            position: toast.POSITION.TOP_RIGHT
+          });
       }
 
 
     }).catch(function(error) {
-      alert(error);
+      toast.error(error, {
+          position: toast.POSITION.TOP_RIGHT
+        });
     });
     
     
@@ -192,12 +197,16 @@ class Users extends Component {
         this.setState({userList: tempList});
         return;
       } else {
-        alert(data['message']);
+        toast.error(data['message'], {
+            position: toast.POSITION.TOP_RIGHT
+          });
       }
 
 
     }).catch(function(error) {
-      alert(error);
+      toast.error(error, {
+          position: toast.POSITION.TOP_RIGHT
+        });
     });
   }
 
@@ -235,12 +244,16 @@ class Users extends Component {
         this.setState({userList: tempList});
         return;
       } else {
-        alert(data['message']);
+        toast.error(data['message'], {
+            position: toast.POSITION.TOP_RIGHT
+          });
       }
 
 
     }).catch(function(error) {
-      alert(error);
+      toast.error(error, {
+          position: toast.POSITION.TOP_RIGHT
+        });
     });
   }
 
@@ -285,12 +298,16 @@ class Users extends Component {
         this.setState({userList: tempList});
         return;
       } else {
-        alert(data['message']);
+        toast.error(data['message'], {
+            position: toast.POSITION.TOP_RIGHT
+          });
       }
 
 
     }).catch(function(error) {
-      alert(error);
+      toast.error(error, {
+          position: toast.POSITION.TOP_RIGHT
+        });
     });
 
 

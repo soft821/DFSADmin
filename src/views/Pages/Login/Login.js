@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { Route, Redirect } from 'react-router-dom';
+import { ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
+
 class Login extends Component {
 
   constructor(props){
@@ -49,12 +53,17 @@ class Login extends Component {
         
         return;
       } else {
-        alert('server error:' + data['message']);
+        toast.error(data['message'], {
+            position: toast.POSITION.TOP_RIGHT
+          });
+        
       }
 
 
     }).catch(function(error) {
-      alert(error);
+      toast.error(error, {
+          position: toast.POSITION.TOP_RIGHT
+        });
     });
     
     event.preventDefault();
@@ -110,6 +119,7 @@ class Login extends Component {
             </Col>
           </Row>
         </Container>
+        <ToastContainer autoClose={3000} />
       </div>
     );
   }

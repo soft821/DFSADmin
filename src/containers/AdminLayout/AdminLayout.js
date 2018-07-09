@@ -21,7 +21,8 @@ import routes from '../../routes';
 import AdminAside from './AdminAside';
 import AdminFooter from './AdminFooter';
 import AdminHeader from './AdminHeader';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 class AdminLayout extends Component {
   render() {
@@ -56,6 +57,7 @@ class AdminLayout extends Component {
         <AppFooter>
           <AdminFooter />
         </AppFooter>
+        <ToastContainer autoClose={3000} />
       </div>
     );
   }
