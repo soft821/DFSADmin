@@ -46,17 +46,17 @@ export default {
 
     {
       name: 'Contests',
-      url: '/contest',
+      url: '/contests',
       icon: 'icon-trophy',
       children: [
         {
           name: 'List',
-          url: '/contest/list',
+          url: '/contests/list',
           icon: 'icon-list',
         },
         {
-          name: 'Create',
-          url: '/contest/add',
+          name: 'Headline Matchup',
+          url: '/contests/add',
           icon: 'icon-plus',
         }
       ]

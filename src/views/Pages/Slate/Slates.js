@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Badge, Card, CardBody, CardHeader, Col, Row, Table, Modal, ModalBody, ModalFooter, ModalHeader,Input,InputGroupAddon,InputGroup, Collapse} from 'reactstrap';
+import { Button, Badge, Card, CardBody, CardHeader, Col, Row, Table, Input,InputGroupAddon,InputGroup} from 'reactstrap';
 import  FunctionablePaginator  from '../../mine/FunctionablePaginator';
 import { toast } from 'react-toastify';
 
@@ -106,11 +106,10 @@ class Slates extends Component {
       }, 
    
     }).then(function(response){
-   
       return response.json();
     
     }).then((data) => { 
-    
+    console.log(data)
     if (data['status'] == 0) {
       this.slatesData = data['response'];
       this.slatesRecoveryData = data['response'];

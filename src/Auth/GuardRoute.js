@@ -1,6 +1,5 @@
 import React from 'react';
-import AdminLayout from '../containers/AdminLayout';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 
 
 const adminAuth = {

@@ -196,6 +196,15 @@ const AddSlates = Loadable({
   loader: () => import('./views/Pages/Slate/AddSlates'),
   loading: Loading,
 });
+const Contests = Loadable({
+  loader: () => import('./views/Pages/Contest/Contests'),
+  loading: Loading,
+});
+
+const AddContest = Loadable({
+  loader: () => import('./views/Pages/Contest/AddContest'),
+  loading: Loading,
+});
 
 
 
@@ -249,6 +258,8 @@ const routes = [
   { path: '/slates', exact: true,  name: 'Slates', component: Slates },
   { path: '/slates/list', exact: true,  name: 'List', component: Slates },
   { path: '/slates/add', exact: true,  name: 'Add Slate', component: AddSlates },
+  { path: '/contests/list', exact: true,  name: 'List', component: Contests },
+  { path: '/contests/add', exact: true,  name: 'Add Contest', component: AddContest },
 
 
 

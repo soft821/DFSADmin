@@ -15,8 +15,8 @@ class AdminFooter extends Component {
 
     return (
       <React.Fragment>
-        <span><a href="https://coreui.io">CoreUI</a> &copy; 2018 creativeLabs.</span>
-        <span className="ml-auto">Powered by <a href="https://coreui.io/react">CoreUI for React</a></span>
+        <span><a href="https://draftmatch.com">DraftMatch Admin Panel</a> &copy; 2018 All right reserved.</span>
+        <span className="ml-auto">Powered by <a href="https://draftmatch.com">Jing Zhang</a></span>
       </React.Fragment>
     );
   }
