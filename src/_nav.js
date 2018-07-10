@@ -62,6 +62,20 @@ export default {
       ]
     },
 
+    {
+      name: 'Ranking',
+      url: '/ranking',
+      icon: 'icon-chart',
+      children: [
+        {
+          name: 'Fantasy Player',
+          url: '/ranking/fp_ranking',
+          icon: 'icon-list',
+        },
+        
+      ]
+    },
+
     ////////////////////////////////////////////////////////
 
     {

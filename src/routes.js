@@ -205,6 +205,11 @@ const AddContest = Loadable({
   loader: () => import('./views/Pages/Contest/AddContest'),
   loading: Loading,
 });
+const Ranking = Loadable({
+  loader: () => import('./views/Pages/Ranking/FpRanking'),
+  loading: Loading,
+});
+
 
 
 
@@ -260,7 +265,9 @@ const routes = [
   { path: '/slates/add', exact: true,  name: 'Add Slate', component: AddSlates },
   { path: '/contests/list', exact: true,  name: 'List', component: Contests },
   { path: '/contests/add', exact: true,  name: 'Add Contest', component: AddContest },
-
+  { path: '/ranking', exact: true,  name: 'Slates', component: Ranking },
+  { path: '/ranking/fp_ranking', exact: true,  name: 'List', component: Ranking },
+ 
 
 
 ];
