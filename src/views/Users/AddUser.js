@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { toast } from 'react-toastify';
+import { API_ROOT } from '../../api-config';
+
 
 class AddUser extends Component {
     
@@ -25,7 +27,7 @@ class AddUser extends Component {
             return;
 
         let authToken = localStorage.getItem('token');
-        fetch("http://localhost:8000/api/v1/admin/sendpromo?email=" + this.state.email , {
+        fetch(API_ROOT + "/api/v1/admin/sendpromo?email=" + this.state.email , {
           method: 'post',
           headers: {
             'Authorization' : 'Baerer ' + authToken,

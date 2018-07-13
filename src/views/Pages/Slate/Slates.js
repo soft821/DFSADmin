@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, Badge, Card, CardBody, CardHeader, Col, Row, Table, Input,InputGroupAddon,InputGroup} from 'reactstrap';
 import  FunctionablePaginator  from '../../mine/FunctionablePaginator';
 import { toast } from 'react-toastify';
+import { API_ROOT } from '../../../api-config';
+
 
 function SlateRow(props) {
   const slate = props.slate
@@ -98,7 +100,7 @@ class Slates extends Component {
   {
     let authToken = localStorage.getItem('token');
   
-    fetch("http://localhost:8000/api/v1/admin/slates", {
+    fetch(API_ROOT + "/api/v1/admin/slates", {
       method: 'get',
       headers: {
         'Authorization' : 'Baerer ' + authToken,
@@ -196,7 +198,7 @@ class Slates extends Component {
       
   handleSlateStatusChange(slateId, slateStatus, index){
     
-    const reqURL = slateStatus ? "http://localhost:8000/api/v1/admin/slates/deactivate?slate_id=" + slateId : "http://localhost:8000/api/v1/admin/slates/activate?slate_id=" + slateId;
+    const reqURL = slateStatus ? API_ROOT + "/api/v1/admin/slates/deactivate?slate_id=" + slateId : API_ROOT + "/api/v1/admin/slates/activate?slate_id=" + slateId;
 
     let authToken = localStorage.getItem('token');
 

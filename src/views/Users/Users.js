@@ -3,6 +3,7 @@ import { Button, Badge, Card, CardBody, CardHeader, Col, Row, Table, Modal, Moda
 import  FunctionablePaginator  from '../mine/FunctionablePaginator';
 import { AppSwitch } from '@coreui/react';
 import { toast } from 'react-toastify';
+import { API_ROOT } from '../../api-config';
 
 function UserRow(props) {
   const user = props.user
@@ -42,9 +43,9 @@ function UserRow(props) {
         <th scope="row"><a href={userLink}>{user.id}</a></th>
         <td><a href="#">{user.name}</a></td>
         <td>{user.email}</td>
-        <td>{user.deposit / rate}</td>
-        <td>{user.balance / rate}</td>
-        <td>{(user.balance - user.deposit) / rate}</td>
+        <td>{(user.deposit / rate).toString()}</td>
+        <td>{(user.balance / rate).toString()}</td>
+        <td>{((user.balance - user.deposit) / rate).toString()}</td>
         <td className='text-center'><AppSwitch className={'mx-1'} variant={'3d'} color={'success'} checked={user.blog_access} onChange={changeAccessPermission}/></td>
         <td><Badge href={userLink} color={getBadge(user.status)}>{user.status}</Badge></td>
         <td><Button block color={getButtonColor(user.status)} onClick={changeStatus}>{getStatusTitle(user.status)}</Button></td>
@@ -79,13 +80,14 @@ class Users extends Component {
   componentDidMount() {
     
     this.loadUsersData()
+    
   }
 
   loadUsersData()
   {
     let authToken = localStorage.getItem('token');
 
-    fetch("http://localhost:8000/api/v1/admin/users", {
+    fetch(API_ROOT + "/api/v1/admin/users", {
       method: 'get',
       headers: {
           'Authorization' : 'Baerer ' + authToken,
@@ -104,6 +106,7 @@ class Users extends Component {
         this.totalPages  = Math.ceil(this.usersData.length / this.defaultCountPerPage);
         this.setState({userList : this.countUserList()})
         this.setState({rate : data['userInfo']['rate']})
+        
         return;
       } else {
         toast.error(data['message'], {
@@ -164,7 +167,7 @@ class Users extends Component {
   handleUserStatusChange(userId, userStatus, index){
     
     const willBlock = userStatus === 'active' ? true : false;
-    const reqURL = willBlock ? "http://localhost:8000/api/v1/admin/users/block?user_id=" + userId : "http://localhost:8000/api/v1/admin/users/activate?user_id=" + userId;
+    const reqURL = willBlock ? API_ROOT + "/api/v1/admin/users/block?user_id=" + userId : API_ROOT + "/api/v1/admin/users/activate?user_id=" + userId;
 
     let authToken = localStorage.getItem('token');
 
@@ -211,7 +214,7 @@ class Users extends Component {
   }
 
   handleUserAccessPermission(userId, accessStatus, index){
-    const reqURL = "http://localhost:8000/api/v1/admin/user/access-blog?user_id=" + userId + '&blog_access=' + accessStatus;
+    const reqURL = API_ROOT + "/api/v1/admin/user/access-blog?user_id=" + userId + '&blog_access=' + accessStatus;
 
     let authToken = localStorage.getItem('token');
 
@@ -268,7 +271,7 @@ class Users extends Component {
   {
     this.togglePrimary();
 
-    let reqURL = "http://localhost:8000/api/v1/admin/user/delete?user_id=" + this.removedUserId;
+    let reqURL = API_ROOT + "/api/v1/admin/user/delete?user_id=" + this.removedUserId;
 
     let authToken = localStorage.getItem('token');
     fetch(reqURL, {

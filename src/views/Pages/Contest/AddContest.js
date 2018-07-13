@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormGroup, Label, Button, Card, CardHeader,CardBody, CardGroup, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { toast } from 'react-toastify';
-
+import { API_ROOT } from '../../../api-config';
 
 class AddContest extends Component {
     
@@ -22,7 +22,7 @@ class AddContest extends Component {
     {
       let authToken = localStorage.getItem('token');
   
-      fetch("http://localhost:8000/api/v1/slates", {
+      fetch(API_ROOT + "/api/v1/slates", {
         method: 'get',
         headers: {
           'Authorization' : 'Baerer ' + authToken,
@@ -82,7 +82,7 @@ class AddContest extends Component {
 
       let authToken = localStorage.getItem('token');
       
-      fetch("http://localhost:8000/api/v1/contests", {
+      fetch(API_ROOT + "/api/v1/contests", {
         method: 'post',
         headers: {
           'Authorization' : 'Baerer ' + authToken,
@@ -135,7 +135,7 @@ class AddContest extends Component {
 
       let authToken = localStorage.getItem('token');
   
-      fetch("http://localhost:8000/api/v1/fantasyPlayers?slate_id=" + strSlateId + '&position=' + strPosition, {
+      fetch(API_ROOT + "/api/v1/fantasyPlayers?slate_id=" + strSlateId + '&position=' + strPosition, {
         method: 'get',
         headers: {
           'Authorization' : 'Baerer ' + authToken,

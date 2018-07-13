@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormGroup, Label, Button, Card, CardBody, CardGroup, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { toast } from 'react-toastify';
-
+import { API_ROOT } from '../../../api-config';
 
 class AddSlates extends Component {
     
@@ -43,7 +43,7 @@ class AddSlates extends Component {
 
       let authToken = localStorage.getItem('token');
       
-      fetch("http://localhost:8000/api/v1/admin/slates", {
+      fetch(API_ROOT + "/api/v1/admin/slates", {
         method: 'post',
         headers: {
           'Authorization' : 'Baerer ' + authToken,
@@ -99,7 +99,7 @@ class AddSlates extends Component {
     {
       let authToken = localStorage.getItem('token');
   
-      fetch("http://localhost:8000/api/v1/admin/pendingGames", {
+      fetch(API_ROOT + "/api/v1/admin/pendingGames", {
         method: 'get',
         headers: {
           'Authorization' : 'Baerer ' + authToken,

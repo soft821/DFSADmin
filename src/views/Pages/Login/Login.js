@@ -3,7 +3,7 @@ import { Button, Card, CardBody, CardGroup, Col, Container, Input, InputGroup, I
 import { Route, Redirect } from 'react-router-dom';
 import { ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-
+import { API_ROOT } from '../../../api-config';
 
 class Login extends Component {
 
@@ -30,7 +30,7 @@ class Login extends Component {
 
   handleLogin(event){
 
-    fetch("http://localhost:8000/api/v1/auth/admin-login?email=" + this.state.username + "&password=" + this.state.password , {
+    fetch(API_ROOT + "/api/v1/auth/admin-login?email=" + this.state.username + "&password=" + this.state.password , {
       method: 'post',
       headers: {
      

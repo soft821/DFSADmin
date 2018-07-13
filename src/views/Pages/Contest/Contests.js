@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Badge, Card, CardBody, CardHeader, Col, Row, Table, Input,InputGroupAddon,InputGroup} from 'reactstrap';
 import  FunctionablePaginator  from '../../mine/FunctionablePaginator';
 import { toast } from 'react-toastify';
+import { API_ROOT } from '../../../api-config';
 
 function ContestRow(props) {
   const contest = props.contest
@@ -68,7 +69,7 @@ class Contests extends Component {
   {
     let authToken = localStorage.getItem('token');
   
-    fetch("http://localhost:8000/api/v1/contests?status=LOBBY", {
+    fetch(API_ROOT + "/api/v1/contests?status=LOBBY", {
       method: 'get',
       headers: {
         'Authorization' : 'Baerer ' + authToken,

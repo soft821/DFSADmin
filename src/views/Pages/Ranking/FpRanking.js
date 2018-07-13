@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Modal, ModalBody, ModalFooter, ModalHeader,FormGroup, Label, Button, Badge, Card, CardBody, CardHeader, Col, Row, Table, Input,InputGroupAddon,InputGroup} from 'reactstrap';
 import  FunctionablePaginator  from '../../mine/FunctionablePaginator';
 import { toast } from 'react-toastify';
+import { API_ROOT } from '../../../api-config';
+
 
 function RankingRow(props) {
   const fPlayer = props.fPlayer
@@ -69,7 +71,7 @@ class FpRanking extends Component {
   {
     let authToken = localStorage.getItem('token');
   
-    fetch("http://localhost:8000/api/v1/admin/fantasyPlayers", {
+    fetch(API_ROOT + "/api/v1/admin/fantasyPlayers", {
       method: 'get',
       headers: {
         'Authorization' : 'Baerer ' + authToken,
@@ -172,7 +174,7 @@ class FpRanking extends Component {
 
     let authToken = localStorage.getItem('token');
       
-      fetch("http://localhost:8000/api/v1/admin/update/fp_tier", {
+      fetch(API_ROOT + "/api/v1/admin/update/fp_tier", {
         method: 'post',
         headers: {
           'Authorization' : 'Baerer ' + authToken,
