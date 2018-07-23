@@ -27,7 +27,7 @@ import { Login, Page404, Page500, Register } from './views/Pages';
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/dmAdmin">
         <Switch>
           <Route exact path="/login" name="Login Page" component={Login} />
           <Route exact path="/register" name="Register Page" component={Register} />

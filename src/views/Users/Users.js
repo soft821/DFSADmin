@@ -99,7 +99,6 @@ class Users extends Component {
         return response.json();
   
     }).then((data) => { 
-      
       if (data['status'] == 0) {
         this.usersData = data['response'];
         this.usersRecoveryData = data['response'];

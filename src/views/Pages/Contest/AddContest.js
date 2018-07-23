@@ -12,6 +12,7 @@ class AddContest extends Component {
           slates: [],
           fPlayers: []
         }
+        this.entryCount = 2;
     }
 
     componentDidMount() {
@@ -63,6 +64,9 @@ class AddContest extends Component {
       }
 
       if (!this.selectStatus || this.selectStatus.length != 2) {
+
+        console.log('*************' + this.selectStatus);
+
         toast.error('Please choose 2 fantasy players.', {
           position: toast.POSITION.TOP_RIGHT
         });
@@ -173,6 +177,7 @@ class AddContest extends Component {
         this.selectStatus.splice(position, 1)
       } else {
         this.selectStatus.push(this.state.fPlayers[index].id)
+        console.log("sort:"+ this.selectStatus);
       }
 
     }
@@ -185,6 +190,7 @@ class AddContest extends Component {
     handleChoosePosition(e){
       this.position = e.target.value
       this.handleGetPlayers()
+      this.selectStatus = [];
     }
 
     handleChooseFee(e){

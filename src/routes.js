@@ -209,9 +209,10 @@ const Ranking = Loadable({
   loader: () => import('./views/Pages/Ranking/FpRanking'),
   loading: Loading,
 });
-
-
-
+const FooterUpdate = Loadable({
+  loader: () => import('./views/Pages/FooterUpdate/FooterUpdate'),
+  loading: Loading,
+});
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
@@ -267,7 +268,7 @@ const routes = [
   { path: '/contests/add', exact: true,  name: 'Add Contest', component: AddContest },
   { path: '/ranking', exact: true,  name: 'Slates', component: Ranking },
   { path: '/ranking/fp_ranking', exact: true,  name: 'List', component: Ranking },
- 
+  { path: '/footer/update', exact: true,  name: 'FooterUpdate', component: FooterUpdate },
 
 
 ];

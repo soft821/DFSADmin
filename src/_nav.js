@@ -76,6 +76,12 @@ export default {
       ]
     },
 
+    {
+      name: 'footerUpdate',
+      url: '/footer/update',
+      icon: 'icon-pencil'
+    },
+
     ////////////////////////////////////////////////////////
 
     {
@@ -323,6 +329,7 @@ export default {
           icon: 'icon-star',
         },
       ],
-    }    
+    }   
+    
   ],
 };
