@@ -77,6 +77,25 @@ export default {
     },
 
     {
+      name: 'Blogs',
+      url: '/blogs',
+      icon: 'icon-user',
+      children: [
+        {
+          name: 'List',
+          url: '/blogs/list',
+          icon: 'icon-list',
+        },
+        {
+          name: 'Add',
+          url: '/blogs/add',
+          icon: 'icon-plus',
+        }
+      ]
+
+    },
+
+    {
       name: 'footerUpdate',
       url: '/footer/update',
       icon: 'icon-pencil'

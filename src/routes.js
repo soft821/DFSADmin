@@ -209,6 +209,20 @@ const Ranking = Loadable({
   loader: () => import('./views/Pages/Ranking/FpRanking'),
   loading: Loading,
 });
+const Blogs = Loadable({
+  loader: () => import('./views/Pages/Blog/Blogs'),
+  loading: Loading,
+});
+
+const Blog = Loadable({
+  loader: () => import('./views/Pages/Blog/Blog'),
+  loading: Loading,
+});
+
+const AddBlog = Loadable({
+  loader: () => import('./views/Pages/Blog/AddBlog'),
+  loading: Loading,
+});
 const FooterUpdate = Loadable({
   loader: () => import('./views/Pages/FooterUpdate/FooterUpdate'),
   loading: Loading,
@@ -269,6 +283,10 @@ const routes = [
   { path: '/ranking', exact: true,  name: 'Slates', component: Ranking },
   { path: '/ranking/fp_ranking', exact: true,  name: 'List', component: Ranking },
   { path: '/footer/update', exact: true,  name: 'FooterUpdate', component: FooterUpdate },
+  // { path: '/blogs', exact: true,  name: 'Blogs', component: Blogs },
+  { path: '/blogs/list', exact: true,  name: 'List', component: Blogs },
+  { path: '/blogs/add', exact: true, name: 'Add Blog', component: AddBlog },
+  // { path: '/blogs/:id', exact: true, name: 'Blog Details', component: Blog },
 
 
 ];
