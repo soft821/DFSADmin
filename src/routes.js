@@ -223,6 +223,12 @@ const AddBlog = Loadable({
   loader: () => import('./views/Pages/Blog/AddBlog'),
   loading: Loading,
 });
+
+const EditBlog = Loadable({
+  loader: () => import('./views/Pages/Blog/EditBlog'),
+  loading: Loading,
+});
+
 const FooterUpdate = Loadable({
   loader: () => import('./views/Pages/FooterUpdate/FooterUpdate'),
   loading: Loading,
@@ -286,7 +292,8 @@ const routes = [
   // { path: '/blogs', exact: true,  name: 'Blogs', component: Blogs },
   { path: '/blogs/list', exact: true,  name: 'List', component: Blogs },
   { path: '/blogs/add', exact: true, name: 'Add Blog', component: AddBlog },
-  // { path: '/blogs/:id', exact: true, name: 'Blog Details', component: Blog },
+  { path: '/blogs/:id', exact: true, name: 'Blog Details', component: Blog },
+  { path: '/blogs/edit/:id', exact: true, name: 'Edit Blog', component: EditBlog },
 
 
 ];

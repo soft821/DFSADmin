@@ -6,11 +6,10 @@ import { toast } from 'react-toastify';
 import { API_ROOT } from '../../../api-config';
 
 function BlogRow(props) {
-  const user = props.user
-  // const userLink = `/users/${user.id}`
   const sequence = props.sequence
   const rate = props.rate
   const blog = props.blog
+  const blogLink = `/blogs/${blog.id}`
 
   const getBadge = (status) => {
     return status === 'true' ? 'success' : 'danger'
@@ -41,7 +40,7 @@ function BlogRow(props) {
   return (
     <tr key={blog.id.toString()}>
         <th scope="row"><a href="#">{blog.id}</a></th>
-        <td><a href="#">{blog.title}</a></td>
+        <td><a href={blogLink}>{blog.title}</a></td>
         <td>{blog.categoryName}</td>
         <td>{blog.blogerName}</td>
         <td>{blog.updated_at.toString()}</td>
@@ -161,55 +160,6 @@ class Blogs extends Component {
     } else {
       return this.blogsData.slice((this.currentPage - 1)*this.defaultCountPerPage,  this.currentPage * this.defaultCountPerPage)
     }
-  }
-
-  handleUserStatusChange(userId, userStatus, index){
-    
-    const willBlock = userStatus === 'active' ? true : false;
-    const reqURL = willBlock ? API_ROOT + "/api/v1/admin/users/block?user_id=" + userId : API_ROOT + "/api/v1/admin/users/activate?user_id=" + userId;
-
-    let authToken = localStorage.getItem('token');
-
-    fetch(reqURL, {
-      method: 'post',
-      headers: {
-          'Authorization' : 'Baerer ' + authToken,
-          'Content-Type': 'application/json',
-      }, 
-     
-    }).then(function(response){
-     
-        return response.json();
-  
-    }).then((data) => { 
-      
-      if (data['status'] == 0) {
-        
-        let tempList = this.state.userList;
-        let selectedItem = tempList[index];
-
-        tempList[index]['status'] = userStatus === 'active' ? 'blocked' : 'active';
-        let c_index = this.usersData.indexOf(selectedItem);
-        
-        if (c_index) {
-          this.usersData[c_index]['status'] = userStatus === 'active' ? 'blocked' : 'active';
-        }
-
-
-        this.setState({userList: tempList});
-        return;
-      } else {
-        toast.error(data['message'], {
-            position: toast.POSITION.TOP_RIGHT
-          });
-      }
-
-
-    }).catch(function(error) {
-      toast.error(error, {
-          position: toast.POSITION.TOP_RIGHT
-        });
-    });
   }
 
   handleBlogStatusChange(blogId, publishStatus, index){

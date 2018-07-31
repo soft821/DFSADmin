@@ -64,7 +64,7 @@ function SectionRow(props) {
                   <Label></Label>
                 </Col>
                 <Col xs="12" md="11">
-                  <p className="form-control-static">Section{section.id.toString()}</p>
+                  <h4><p className="form-control-static">Section{section.id.toString()}</p></h4>
                 </Col>
               </FormGroup>
               <FormGroup row>
@@ -75,7 +75,7 @@ function SectionRow(props) {
                   <Label htmlFor="text-input">Title of the section</Label>
                 </Col>
                 <Col xs="12" md="8">
-                  <Input type="text" id="text-input" onChange={changeSectionTitle}  name="text-input" placeholder="Title of the section" />
+                  <Input type="text" id="text-input" onChange={changeSectionTitle}  value={section.title} name="text-input" placeholder="Title of the section" />
                 </Col>
               </FormGroup>
               <FormGroup row>
@@ -86,7 +86,7 @@ function SectionRow(props) {
                   <Label htmlFor="text-input">Subtitle of the section</Label>
                 </Col>
                 <Col xs="12" md="8">
-                  <Input type="text" onChange={changeSectionSubTitle} id="text-input" name="text-input" placeholder="Subtitle of the section" />
+                  <Input type="text" onChange={changeSectionSubTitle} value={section.subtitle} id="text-input" name="text-input" placeholder="Subtitle of the section" />
                 </Col>
               </FormGroup>
               <FormGroup row>
@@ -97,7 +97,7 @@ function SectionRow(props) {
                   <Label htmlFor="textarea-input">Description</Label>
                 </Col>
                 <Col xs="12" md="8">
-                  <Input type="textarea" onChange={changeSectionDescription} name="textarea-input" id="textarea-input" rows="9"
+                  <Input type="textarea" onChange={changeSectionDescription} value={section.description} name="textarea-input" id="textarea-input" rows="9"
                          placeholder="Description of the section..." />
                 </Col>
               </FormGroup>
@@ -132,7 +132,7 @@ function CategoryRow(props) {
 }
 
 
-class AddBlog extends Component {
+class EditBlog extends Component {
     
   constructor(props) {
     super(props);
@@ -163,7 +163,13 @@ class AddBlog extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
+    this.loadCategory()
+    this.loadBlogData()
+    
+  }
+  loadCategory()
+  {
       let authToken = localStorage.getItem('token');
 
       fetch(API_ROOT + "/api/v1/posts/create", {
@@ -195,6 +201,48 @@ class AddBlog extends Component {
             position: toast.POSITION.TOP_RIGHT
           });
       });
+  }
+
+  loadBlogData()
+  {
+    let authToken = localStorage.getItem('token');
+
+    fetch(API_ROOT + "/api/v1/admin/posts/edit/" + this.props.match.params.id.toString(), {
+      method: 'get',
+      headers: {
+          'Authorization' : 'Baerer ' + authToken,
+          'Content-Type': 'application/json',
+      }, 
+     
+    }).then(function(response){
+     
+        return response.json();
+  
+    }).then((data) => { 
+      if (data['status'] == 0) {
+        this.blogData = data['response'];
+        this.blogRecoveryData = data['response'];
+        this.setState({blogList : this.blogData});
+        {this.blogData.map((blog, index) =>
+          this.setState({category : blog.category, color : blog.color,blogTitle : blog.title, blogDescription : blog.description, sectionList: blog.sections})
+        )}
+        this.sections = this.state.sectionList;
+        console.log(this.sections)
+
+        return;
+      } else {
+        toast.error(data['message'], {
+            position: toast.POSITION.TOP_RIGHT
+          });
+      }
+
+
+    }).catch(function(error) {
+      toast.error(error, {
+          position: toast.POSITION.TOP_RIGHT
+        });
+    });
+    
   }
 
   toggle() {
@@ -231,7 +279,7 @@ class AddBlog extends Component {
   handleAddSection(event)
   {
     this.sectionLastId = this.sectionLastId + 1;
-    this.sections.push({id: this.sectionLastId, title: '', subtitle: '', description: ''});
+    this.sections.push({id: this.sectionLastId, title: 'title of the section', subtitle: 'subtitle of the section', description: 'description of the section'});
     this.setState({sectionList: this.sections});
     console.log(this.state.sectionList);
   }
@@ -250,15 +298,15 @@ class AddBlog extends Component {
   }
   handleSectionTitle(section_id, event){
     this.sections[section_id - 1].title = event.target.value;
-    this.setState({sectionsList: this.sections});
+    this.setState({sectionList: this.sections});
   }
   handleSectionSubTitle(section_id, event){
     this.sections[section_id - 1].subtitle = event.target.value;
-    this.setState({sectionsList: this.sections});
+    this.setState({sectionList: this.sections});
   }
   handleSectionDescription(section_id, event){
     this.sections[section_id - 1].description = event.target.value;
-    this.setState({sectionsList: this.sections});
+    this.setState({sectionList: this.sections});
   }
   handleSectionImage(section_id, event)
   {
@@ -284,7 +332,7 @@ class AddBlog extends Component {
     formData.append('description', this.state.blogDescription);
     formData.append('category', this.state.category);
     formData.append('color', this.state.color);
-    formData.append('sections', JSON.stringify(this.state.sectionsList));
+    formData.append('sections', JSON.stringify(this.state.sectionList));
     let images = this.state.sectionImages;   
     if(images) {
 
@@ -293,9 +341,9 @@ class AddBlog extends Component {
       }
        
     }
-    console.log(this.state.sectionImages)
+    console.log(this.state.sectionList)
     let authToken = localStorage.getItem('token');
-    fetch( API_ROOT + "/api/v1/posts/store", {
+    fetch( API_ROOT + "/api/v1/admin/posts/update/" + this.props.match.params.id.toString(), {
       "body": formData,
       "headers":{
           'Authorization' : 'Baerer ' + authToken,
@@ -340,7 +388,7 @@ class AddBlog extends Component {
                   <Col xs="12" md="12">
                     <Card>
                       <CardHeader>
-                        <strong>Blog</strong> Create
+                        <strong>Blog</strong> Edit
                       </CardHeader>
                       <CardBody>
                         <Form action="" method="post" encType="multipart/form-data" className="form-horizontal">
@@ -408,37 +456,11 @@ class AddBlog extends Component {
                               {this.state.sectionList.map((section, index) =>
                                 <SectionRow key={index} sequence={index} section={section} changeSectionTitle={this.handleSectionTitle.bind(this)}  changeSectionSubTitle={this.handleSectionSubTitle.bind(this)}  changeSectionDescription={this.handleSectionDescription.bind(this)} changeSectionImage={this.handleSectionImage.bind(this)} addSection={this.handleAddSection.bind(this)}/>
                               )}
-
-                          <FormGroup>
-                            <Row className="align-items-center">
-                              <Col md="1">
-                                <Label></Label>
-                              </Col>
-                              <Col md="1" xl className="mb-3 mb-xl-0">
-                                <Button block type="button" color="success" onClick={this.handleAddSection.bind(this)}>Add section</Button>
-                              </Col>
-                              <Col md="9">
-                                <Label></Label>
-                              </Col>
-                            </Row>
-                          </FormGroup>
-                          <FormGroup>
-                            <Row className="align-items-center">
-                              <Col md="1">
-                                <Label></Label>
-                              </Col>
-                              <Col md="1" xl className="mb-3 mb-xl-0">
-                                <Button block type="button" color="danger" onClick={this.handleDeleteLastSection.bind(this)}>Delete last section</Button>
-                              </Col>
-                              <Col md="9">
-                                <Label></Label>
-                              </Col>
-                            </Row>
-                          </FormGroup>
+                        
                         </Form>
                       </CardBody>
                       <CardFooter>
-                        <Button type="submit" onClick={this.handleSubmit.bind(this)} size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Create</Button>
+                        <Button type="submit" onClick={this.handleSubmit.bind(this)} size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Update</Button>
                         <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Cancel</Button>
                       </CardFooter>
                     </Card>
@@ -451,4 +473,4 @@ class AddBlog extends Component {
 
 }
 
-export default AddBlog;
+export default EditBlog;
